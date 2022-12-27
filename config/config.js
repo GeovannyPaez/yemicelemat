@@ -10,6 +10,10 @@ const config={
   dbName: process.env.DB_NAME,
   dbPort: process.env.DB_PORT,
   apiKey:process.env.API_KEY,
-
+  jwtSecret: process.env.JWT_SECRET,
+  gEmail:process.env.EMAIL_GOOGLE,
+  gPassword:process.env.PASSWORD_GOOGLE,
+  authTokenTwilio:process.env.AUTH_TOKEN,
+  AccountSID:process.env.ACCOUNT_SID
 }
 module.exports= config;

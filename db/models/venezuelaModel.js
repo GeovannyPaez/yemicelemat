@@ -29,6 +29,10 @@ const VenezuelaSchema = {
     ...name,
     field:'name_receptor'
   },
+  numPhone: {
+    field:'num_phone',
+    ...number,
+  },
   nameRemitente:{
     ...name,
     field:'name_remitente'
@@ -40,6 +44,10 @@ const VenezuelaSchema = {
   ccRemitente:{
     ...number,
     field:'cc_remitente'
+  },
+  typeDocument:{
+    ...name,
+    field:'type_document'
   },
   typeAccount:{
     ...name,

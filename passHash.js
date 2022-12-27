@@ -1,7 +1,7 @@
 const bcrypt= require('bcrypt');
 
 
-const myPassword= 'lamaria del pilar 123';
+const myPassword= 'admin123';
 
 
 async function generateHash(password){
@@ -10,3 +10,4 @@ async function generateHash(password){
   return hash
 }
  generateHash(myPassword).then(res=>console.log(res));
+

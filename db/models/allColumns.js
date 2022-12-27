@@ -1,6 +1,5 @@
 
-const {DataTypes,Sequelize}= require('sequelize')
-// const { TYPERECEIPT_TABLE } = require('./typeReceiptsModel')
+const {DataTypes}= require('sequelize')
 
 module.exports={
   id: {
@@ -22,12 +21,12 @@ module.exports={
     allowNull:false,
     type: DataTypes.DATE,
     field: 'created_at',
-    defaultValue: Sequelize.NOW,
+    defaultValue:  new Date().toDateString()
   },
   date:{
     allowNull:false,
-    type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW,
+    type: DataTypes.DATE(),
+    defaultValue:  new Date().toDateString()
   },
   typeReceipt:{
     allowNull:false,
@@ -38,20 +37,6 @@ module.exports={
     allowNull:false,
     type:DataTypes.INTEGER
   },
-  // typeReceiptIdd:{
-  //   allowNull:false,
-
-  //   type:DataTypes.INTEGER,
-  //   field:'type_receipt_idd',
-
-
-  //   references:{
-  //     model:'TypeReceit'      ,
-  //     key:'id'
-  //   },
-  //   onUpdate:'CASCADE',
-  //   onDelete:'SET NULL'
-  // },
   number:{
     allowNull:false,
     type: DataTypes.BIGINT,

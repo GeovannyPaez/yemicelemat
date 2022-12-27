@@ -29,6 +29,7 @@ const CelularSchema = {
     ...name,
   },
   numPhone: {
+    field:'num_phone',
     ...number,
   },
 

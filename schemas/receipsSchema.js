@@ -24,15 +24,19 @@ const numAccount= joi.number();
 const limit = joi.number();
 const offset= joi.number();
 const userId= joi.number();
+const cc = joi.number();
+const complete= joi.boolean();
+const date= joi.date();
+
 const createReceiptSchema = joi.object({
   value: value.required(),
   comicion: comicion.required(),
   typeReceipt:tipoRecibo.required(),
-  userId:userId.required(),
   numPhone: numCelular,
   entidad:entidad,
   operador,
   name,
+  cc,
   state:estado,
   email,
   bench:banco,
@@ -45,7 +49,8 @@ const createReceiptSchema = joi.object({
   nameRemitente:name,
   destino:name,
   typeAccount:name,
-  typeDocument:name
+  typeDocument:name,
+
 });
 
 
@@ -54,6 +59,7 @@ const updateReceiptSchema = joi.object({
   comicion: comicion,
   userId:userId,
   fecha: fecha,
+  cc,
   comprobante: comprobante,
   tipoRecibo:tipoRecibo,
   numCelular: numCelular,
@@ -84,6 +90,13 @@ const getReceiptSchema = joi.object({
 
 const quryReceiptSchema= joi.object({
   limit,
-  offset
+  offset,
+  day:name,
+  week:name,
+  month:name,
+  complete:complete,
+  dateEnd:date,
+  dateInitial:date
+
 })
 module.exports = { createReceiptSchema, updateReceiptSchema, quryReceiptSchema,getReceiptSchema ,createTypeReceiptSchema};

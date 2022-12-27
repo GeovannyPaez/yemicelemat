@@ -13,7 +13,7 @@ class UserService{
   async getAllUsers(){
     try {
       const res= await models.User.findAll({
-        attributes:{exclude:['password']}
+        attributes:{exclude:['password',"recoveryToken"]}
       });
       return {
         message:'success',
@@ -23,6 +23,11 @@ class UserService{
       throw boom.notFound(error)
     }
   }
+   async updateUser(id, changes){
+      const {user} = await this.getUserById(id);
+      const rst = user.update(changes);
+      return rst
+   }
 
   async getUserById(id){
     try {
@@ -38,18 +43,33 @@ class UserService{
       throw boom.notFound(error);
     }
   }
+  async getUserByEmail(email){
+    try {
+      const user= await models.User.findOne({
+        where:{
+          email
+        }
+      });
+      return user;
+    } catch (error) {
+      throw boom.notFound(error);
+    }
+  }
   async getUserAndReceipts(id){
     try {
       const user= await models.User.findAll({
         where: {
-          id: id
+          id
         },
+        attributes:{exclude:['password','recoveryToken']},
         include:[{all:true}]
       });
+      if(user.length === 0) throw boom.notFound();
       return {
         message:'success',
-        user
+        user: user[0]
       }
+
     } catch (error) {
       throw boom.notFound(error);
     }
@@ -58,6 +78,7 @@ class UserService{
    try {
     const res = await models.User.create(body);
     delete res.dataValues.password;
+    {res.recoveryToken && delete res.dataValues.recoveryToken}
     return res
    } catch (error) {
     throw boom.conflict(error);

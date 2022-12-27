@@ -27,8 +27,8 @@ const PinesSchema = {
   urlVoucher,
   email,
   numPhone: {
+    field:'num_phone',
     ...number,
-    field:'num_phone'
   },
   entidad:{
     ...name

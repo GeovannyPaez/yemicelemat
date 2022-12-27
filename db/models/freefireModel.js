@@ -16,6 +16,10 @@ const FreefireSchema = {
     ...number,
     field:'id_freefire'
   },
+  numPhone: {
+    field:'num_phone',
+    ...number,
+  },
   userId,
 
 };

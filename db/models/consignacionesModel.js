@@ -29,6 +29,18 @@ const ConsignacionesSchema = {
     ...number,
     field:'num_account'
   },
+  typeAccount:{
+    ...name,
+    field:'type_account'
+  },
+  cc:{
+    ...number,
+    field:'cc'
+  },
+  numPhone: {
+    field:'num_phone',
+    ...number,
+  },
   name,
   bench,
 };

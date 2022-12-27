@@ -3,8 +3,8 @@ const {errorHandler,logErrors, boomErrorHandler, ormErrorHandler}= require('./mi
 const cors= require('cors')
 const app= express();
 const routerApi= require('./routes');
-const checkApiKey = require('./middlewares/authHandler');
-
+const {checkApiKey} = require('./middlewares/authHandler');
+const passport = require('passport');
 const port = process.env.PORT || 3000;
 
 
@@ -27,8 +27,9 @@ const options = {
   }
 }
 app.use(cors(options));
+app.use(passport.initialize());
 routerApi(app);
-
+require('./untils/auth')
 app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);

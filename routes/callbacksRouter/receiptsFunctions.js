@@ -1,6 +1,12 @@
+
 const getReceipts = async (req, res, next, callback) => {
   try {
-    const query= req.query;
+    const querys= req.query;
+    const query = {
+      ...querys,
+      userId: req.user.id,
+      admin: req.user.admin
+    }
     const receipts = await callback.getAll(query);
     res.json(receipts);
   } catch (error) {
@@ -18,7 +24,9 @@ const getOneReceipt = async (req, res, next, callback) => {
 };
 const createReceipt = async (req, res, next, callback) => {
   try {
+    const {id}= req.user
     const body = req.body;
+    body.userId= id;
     const response = await callback.create(body);
     res.json(response);
   } catch (error) {
@@ -35,6 +43,15 @@ const updateReceipt = async (req, res, next, callback) => {
     next(error);
   }
 };
+const getReceiptsDay= async(req,res,next,callback)=>{
+  try {
+    const {user}= req;
+    const response = await callback.getReceiptsDay(user);
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+}
 const deleteReceipt = async (req, res, next, callback) => {
   try {
     const {id} = req.params;
@@ -50,4 +67,5 @@ module.exports = {
   deleteReceipt,
   updateReceipt,
   createReceipt,
+  getReceiptsDay
 };

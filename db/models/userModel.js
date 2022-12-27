@@ -18,6 +18,11 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  recoveryToken:{
+    allowNull:true,
+    type:DataTypes.STRING,
+    field:'recovery_token'
+  },
   createAt: {
     allowNull: false,
     type: DataTypes.DATE,
@@ -32,11 +37,6 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-  },
-  description:{
-    allowNull:false,
-    type:DataTypes.STRING,
-    defaultValue: 'is the mejor user'
   }
 };
 

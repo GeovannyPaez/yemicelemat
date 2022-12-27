@@ -45,6 +45,10 @@ const GirosSchema = {
   destino:{
     ...name
   },
+  numPhone: {
+    field:'num_phone',
+    ...number,
+  },
   userId
 };
 
