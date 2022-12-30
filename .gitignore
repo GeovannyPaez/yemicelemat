@@ -4,12 +4,12 @@
 ### Linux ###
 *~
 ## ARCHIVOS NO USADOS
-./lib/postgres
-./lib/postgresPool.js
-./nodemailer.js
-./passHash.js
-./passVeriifyHash.js
-./token-sing.js
+lib/postgres.js
+lib/postgresPool.js
+nodemailer.js
+passHash.js
+passVeriifyHash.js
+token-sing.js
 token-verify.js
 
 # temporary files which can be created if a process still has a handle open of a deleted file
