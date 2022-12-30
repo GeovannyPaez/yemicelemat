@@ -43,15 +43,6 @@ const updateReceipt = async (req, res, next, callback) => {
     next(error);
   }
 };
-const getReceiptsDay= async(req,res,next,callback)=>{
-  try {
-    const {user}= req;
-    const response = await callback.getReceiptsDay(user);
-    res.json(response)
-  } catch (error) {
-    next(error)
-  }
-}
 const deleteReceipt = async (req, res, next, callback) => {
   try {
     const {id} = req.params;
@@ -67,5 +58,4 @@ module.exports = {
   deleteReceipt,
   updateReceipt,
   createReceipt,
-  getReceiptsDay
 };

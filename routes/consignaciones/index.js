@@ -5,7 +5,7 @@ const {
   deleteReceipt,
   updateReceipt,
   getOneReceipt,
-  getReceiptsDay
+
 } = require('../callbacksRouter/receiptsFunctions');
 
 const { ConsignacionesServices } = require('../../services/receiptsServicesAll');
@@ -25,10 +25,6 @@ validatorHandler(quryReceiptSchema,'query'),
  async (req, res, next) => {
   await getReceipts(req, res, next, callback);
 });
-router.get('/day',
-async(req,res,next)=>{
-  await  getReceiptsDay( req,res,next,callback);
-})
 router.get('/:id', validatorHandler(getReceiptSchema,'params'),
   async (req,res,next)=>await getOneReceipt(req,res,next,callback)
 )

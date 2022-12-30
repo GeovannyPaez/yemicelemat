@@ -14,6 +14,7 @@ const config={
   gEmail:process.env.EMAIL_GOOGLE,
   gPassword:process.env.PASSWORD_GOOGLE,
   authTokenTwilio:process.env.AUTH_TOKEN,
-  AccountSID:process.env.ACCOUNT_SID
+  AccountSID:process.env.ACCOUNT_SID,
+  dominioFronEnd:process.env.DOMINIO_FRONTEND
 }
 module.exports= config;

@@ -5,7 +5,6 @@ const {
   deleteReceipt,
   updateReceipt,
   getOneReceipt,
-  getReceiptsDay
 } = require('../callbacksRouter/receiptsFunctions');
 
 const { CelularServices } = require('../../services/receiptsServicesAll');
@@ -27,10 +26,7 @@ router.get(
     await getReceipts(req, res, next, callback);
   }
 );
-router.get('/day',
-async(req,res,next)=>{
-  await  getReceiptsDay( req,res,next,callback);
-})
+
 router.get(
   '/:id',
   validatorHandler(getReceiptSchema, 'params'),

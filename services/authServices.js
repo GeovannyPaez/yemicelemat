@@ -3,7 +3,7 @@ const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Emails = require('./emails/');
-const { jwtSecret, gEmail } = require('../config/config');
+const { jwtSecret, gEmail , dominioFronEnd} = require('../config/config');
 
 const service = new UserService();
 const EmailService = new Emails();
@@ -52,6 +52,7 @@ class AuthService {
         throw boom.unauthorized();
 
       }
+
       const hash = await bcrypt.hash(newPassword, 10);
       await service.updateUser(user.id, {
         recoveryToken: null,
@@ -73,7 +74,7 @@ class AuthService {
     const token = jwt.sign(payload, jwtSecret, {
       expiresIn: '15min',
     });
-    const link = `https://myFront.com/recovey/?token=${token}`;
+    const link = `${dominioFronEnd}/?#/change-password/${token}`;
     await service.updateUser(user.id, { recoveryToken: token });
     const infoMail = {
       from: gEmail, // sender address
@@ -82,6 +83,7 @@ class AuthService {
       text: 'Recuperacion de Contraseña',
       html: `<b>Para recuperar tu contraseña de tu cuenta en Yemicelemat ingrese a este <a href='${link}'>link</a></b>`, // html body
     };
+
     const rst = await EmailService.sendMail(infoMail);
     return rst;
   }

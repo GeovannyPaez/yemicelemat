@@ -134,7 +134,6 @@ class ServicesModelReceipts {
       receipt,
     };
   }
-
   async delete(id) {
     try {
       const res = await models[this.Model].destroy({
@@ -174,34 +173,6 @@ class ServicesModelReceipts {
       };
     } catch (error) {
       throw new Error(error);
-    }
-  }
-
-  async getReceiptsDay(user) {
-    try {
-      const options = {
-        where: {
-          date: new Date().toDateString()
-        },
-      };
-      if (!user.admin) {
-        options.where.userId = user.id;
-      }
-      const receipts = await models[this.Model].findAll({
-        ...options,
-        ...this.options,
-      });
-      const sumComicion = await models[this.Model].sum('comicion', options);
-      const sumVentas = await models[this.Model].sum('value', options);
-      const dinnerTotal = sumComicion + sumVentas;
-      return {
-        receipts,
-        sumComicion,
-        sumVentas,
-        dinnerTotal,
-      };
-    } catch (error) {
-      throw boom.notFound(error);
     }
   }
 }

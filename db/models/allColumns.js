@@ -1,5 +1,5 @@
 
-const {DataTypes}= require('sequelize')
+const {DataTypes, Sequelize}= require('sequelize')
 
 module.exports={
   id: {
@@ -21,12 +21,12 @@ module.exports={
     allowNull:false,
     type: DataTypes.DATE,
     field: 'created_at',
-    defaultValue:  new Date().toDateString()
+    defaultValue:  Sequelize.NOW
   },
   date:{
     allowNull:false,
     type: DataTypes.DATE(),
-    defaultValue:  new Date().toDateString()
+    defaultValue: Sequelize.NOW
   },
   typeReceipt:{
     allowNull:false,

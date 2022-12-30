@@ -5,15 +5,15 @@ const {dbHost,dbName,dbUser,dbPassword,dbPort} = require('../config/config');
 
 const USER= encodeURIComponent(dbUser);
 const PASSWORD= encodeURIComponent(dbPassword);
-const URL= `mysql://${USER}:${PASSWORD}@${dbHost}:${dbPort}/${dbName}`
+const URL= `postgres://${USER}:${PASSWORD}@${dbHost}:${dbPort}/${dbName}`
 
 module.exports= {
   development:{
     url:URL,
-    dialect:'mysql',
+    dialect:'postgres',
   },
   production:{
     url:URL,
-    dialect:'mysql'
+    dialect:'posgrest'
   }
 }
