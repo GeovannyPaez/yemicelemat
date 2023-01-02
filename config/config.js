@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const config={
   env: process.env.NODE_ENV || 'development',
+  isProd:process.env.NODE_ENV ==='production',
   port: process.env.PORT || 3000,
   dbUser: process.env.DB_USER,
   dbPassword: process.env.DB_PASSWORD,
@@ -15,6 +16,7 @@ const config={
   gPassword:process.env.PASSWORD_GOOGLE,
   authTokenTwilio:process.env.AUTH_TOKEN,
   AccountSID:process.env.ACCOUNT_SID,
-  dominioFronEnd:process.env.DOMINIO_FRONTEND
+  dominioFronEnd:process.env.DOMINIO_FRONTEND,
+  dbUrl:process.env.DATABASE_URL
 }
 module.exports= config;

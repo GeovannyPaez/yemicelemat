@@ -4,7 +4,6 @@ const { Freefire,FreefireSchema} = require('./freefireModel');
 const {Pines,PinesSchema  } = require('./pinesModel');
 const {Consignaciones,ConsignacionesSchema  } = require('./consignacionesModel');
 const { Venezuela,VenezuelaSchema} = require('./venezuelaModel');
-const {TypeReceiptSchema,TypeReceipt}= require('./typeReceiptsModel');
 const {Giros,GirosSchema}= require('./girosModel')
 
 function setupModels(sequelize) {
@@ -14,7 +13,6 @@ function setupModels(sequelize) {
   Consignaciones.init(ConsignacionesSchema,Consignaciones.config(sequelize));
   Venezuela.init(VenezuelaSchema,Venezuela.config(sequelize));
   Freefire.init(FreefireSchema,Freefire.config(sequelize));
-  TypeReceipt.init(TypeReceiptSchema,TypeReceipt.config(sequelize));
   Giros.init(GirosSchema,Giros.config(sequelize));
 
 
