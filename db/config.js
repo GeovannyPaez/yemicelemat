@@ -1,6 +1,6 @@
 // archivos de configuraion
 
-const {dbUrl} = require('../config/config');
+const { dbUrl } = require('../config/config');
 // const setupModels= require('../db/models')
 
 // const USER= encodeURIComponent(dbUser);
@@ -8,18 +8,19 @@ const {dbUrl} = require('../config/config');
 // const URL= `postgres://${USER}:${PASSWORD}@${dbHost}:${dbPort}/${dbName}`
 // ?sslmode=require
 
-module.exports= {
-  development:{
-    url:dbUrl,
-    dialect:'postgres',
+module.exports = {
+  development: {
+    url: dbUrl,
+    dialect: 'postgres',
   },
-  production:{
-    url:dbUrl,
-    dialect:'posgrest',
-    dialectOptions:{
-      ssl:{
-        rejectUnauthorized:false
-      }
-    }
-  }
-}
+  production: {
+    url: dbUrl,
+    dialect: 'posgrest',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  },
+};
