@@ -32,5 +32,5 @@ app.use(errorHandler);
 
 
 app.listen(port,()=>{
-  // console.log('el servidor se inicion en el puerto: ' + port)
+  console.log('el servidor se inicion en el puerto: ' + port)
 });
