@@ -1,6 +1,6 @@
 const boom = require('@hapi/boom');
 const {models}= require('../lib/sequelize');
-// const { use } = require('../routes/users');
+
 
 
 class UserService{
@@ -48,7 +48,8 @@ class UserService{
       const user= await models.User.findOne({
         where:{
           email
-        }
+        },
+        attributes:{exclude:['recoveryToken']}
       });
       return user;
     } catch (error) {

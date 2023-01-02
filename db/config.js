@@ -6,6 +6,7 @@ const {dbHost,dbName,dbUser,dbPassword,dbPort} = require('../config/config');
 const USER= encodeURIComponent(dbUser);
 const PASSWORD= encodeURIComponent(dbPassword);
 const URL= `postgres://${USER}:${PASSWORD}@${dbHost}:${dbPort}/${dbName}`
+// ?sslmode=require
 
 module.exports= {
   development:{
