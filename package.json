@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "lint": "eslint",
+    "lint": "eslint index.js",
     "migration:generate": "sequelize-cli migration:generate --name",
     "seed:generate": "sequelize-cli seed:generate --name",
     "migration:run": "sequelize-cli db:migrate ",
@@ -41,6 +41,6 @@
     "sequelize-cli": "^6.5.2"
   },
   "engines": {
-    "node":"16.x"
+    "node": "16.x"
   }
 }
