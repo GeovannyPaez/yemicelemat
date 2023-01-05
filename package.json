@@ -10,8 +10,8 @@
     "migration:generate": "sequelize-cli migration:generate --name",
     "seed:generate": "sequelize-cli seed:generate --name",
     "migration:run": "sequelize-cli db:migrate ",
-    "migration:delete": "sequelize-cli db:undo:all './db/config.js' --env 'development'",
-    "migration:revert": "sequelize-cli db:undo './db/config.js' --env 'development'"
+    "migration:delete": "sequelize-cli db:undo:all ",
+    "migration:revert": "sequelize-cli db:undo"
   },
   "keywords": [],
   "author": "Geovanny Paez",

@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const id = Joi.number();
 const email = Joi.string().email();
-const password = Joi.string().alphanum().min(6);
+const password = Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).min(6)
 const nickname = Joi.string().min(6);
 const token= Joi.string().min(20);
 
