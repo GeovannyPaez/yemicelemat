@@ -6,9 +6,9 @@ const sequelize = require('../../lib/sequelize');
 
 const { models } = sequelize;
 
-class ServicesModelReceipts {
-  constructor(nameModel) {
-    this.Model = nameModel;
+class ServicesRetiros {
+  constructor() {
+    this.Model= 'Retiros';
     this.options = {
       order: [['date', 'DESC']],
       include: {
@@ -18,7 +18,12 @@ class ServicesModelReceipts {
       },
     };
   }
-
+   async getSumDelivered(options={}) {
+    return await models[this.Model].sum('total_delivered',options);
+  }
+   async getSumReceived(options={}){
+    return await models[this.Model].sum('total_received',options)
+  }
   async getAll(query) {
     try {
       if (query?.complete) {
@@ -35,67 +40,69 @@ class ServicesModelReceipts {
           { userId: query.userId, admin: query.admin }
         );
       }
-      return await this.getAllReceiptsDefault(query.userId, query.admin);
+      return await this.getAllReceiptsDefault();
     } catch (error) {
       throw boom.notFound(error);
     }
   }
-  async getAllReceiptsDefault(userId, admin) {
+  async getAllReceiptsDefault() {
     const newOptions = { ...this.options };
-    let where = {
-      userId,
-    };
+    // let where = {
+    //   userId,
+    // };
 
-    if (!admin) {
-      newOptions.where = where;
-    } else {
-      newOptions.where = {};
-    }
-    const sumComicion = await models[this.Model].sum('comicion', {
-      where:newOptions.where
-    });
-    const sumVentas = await models[this.Model].sum('value', {
-      where:newOptions.where
-    });
-    const dinnerTotal = sumComicion + sumVentas;
+    // if (!admin) {
+    //   newOptions.where = where;
+    // } else {
+    //   newOptions.where = {};
+    // }
+    const sumReceived = await this.getSumReceived()
+    const sumDelivered = await this.getSumDelivered();
+    const sumComicion = sumReceived - sumDelivered
     const data = await models[this.Model].findAll(newOptions);
     return {
       message: 'success',
       receipts: data,
       sumComicion,
-      sumVentas,
-      dinnerTotal,
+      sumReceived,
+      sumDelivered
     };
   }
-  async getAllCompletOrNotComplet(boolean, userId, admin) {
+  async getAllCompletOrNotComplet(boolean) {
     let options;
     options = {
       where: {
         state: boolean,
       },
     };
-    if (!admin) {
-      options = {
-        where: {
-          [Op.and]: [{ state: boolean }, { userId: userId }],
-        },
-      };
-    }
+    // if (!admin) {
+    //   options = {
+    //     where: {
+    //       [Op.and]: [{ state: boolean }, { userId: userId }],
+    //     },
+    //   };
+    // }
     const receipts = await models[this.Model].findAll({
       ...options,
       ...this.options,
     });
-    const sumComicion = await models[this.Model].sum('comicion', options);
-    const sumVentas = await models[this.Model].sum('value', options);
-    const dinnerTotal = sumComicion + sumVentas;
+    const sumReceived = await this.getSumReceived(options)
+    const sumDelivered = await this.getSumDelivered(options);
+    const sumComicion = sumReceived - sumDelivered
+    // const sumComicion = await models[this.Model].sum('comicion', options);
+    // const sumVentas = await models[this.Model].sum('value', options);
+    // const dinnerTotal = sumComicion + sumVentas;
     return {
       receipts,
       sumComicion,
-      dinnerTotal,
-      sumVentas,
+      sumReceived,
+      sumDelivered
+      // sumComicion,
+      // dinnerTotal,
+      // sumVentas,
     };
   }
-  async getReceiptsBetweenDates(dateInitial, dateEnd, user) {
+  async getReceiptsBetweenDates(dateInitial, dateEnd) {
     const copyOptions = { ...this.options };
     let options = {
       where: {
@@ -104,17 +111,20 @@ class ServicesModelReceipts {
         },
       },
     };
-    if (!user.admin) {
-      options.where = {
-        [Op.and]: [
-          { date: { [Op.between]: [dateInitial, dateEnd] } },
-          { userId: user.userId },
-        ],
-      };
-    }
-    const sumComicion = await models[this.Model].sum('comicion', options);
-    const sumVentas = await models[this.Model].sum('value', options);
-    const dinnerTotal = sumComicion + sumVentas;
+    // if (!user.admin) {
+    //   options.where = {
+    //     [Op.and]: [
+    //       { date: { [Op.between]: [dateInitial, dateEnd] } },
+    //       { userId: user.userId },
+    //     ],
+    //   };
+    // }
+    const sumReceived = await this.getSumReceived(options)
+    const sumDelivered = await this.getSumDelivered(options);
+    const sumComicion = sumReceived - sumDelivered
+    // const sumComicion = await models[this.Model].sum('comicion', options);
+    // const sumVentas = await models[this.Model].sum('value', options);
+    // const dinnerTotal = sumComicion + sumVentas;
     const receipts = await models[this.Model].findAll({
       ...options,
       ...copyOptions,
@@ -122,8 +132,10 @@ class ServicesModelReceipts {
     return {
       receipts,
       sumComicion,
-      dinnerTotal,
-      sumVentas,
+      sumDelivered,
+      sumReceived
+      // dinnerTotal,
+      // sumVentas,
     };
   }
   async getOne(id) {
@@ -176,4 +188,4 @@ class ServicesModelReceipts {
     }
   }
 }
-module.exports = ServicesModelReceipts;
+module.exports = ServicesRetiros;

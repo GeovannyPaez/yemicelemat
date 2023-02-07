@@ -9,6 +9,7 @@ const freefireRouter= require('./freefire')
 const venezuelaRouter= require('./venezuela')
 const girosRouter= require('./giros');
 const authRouter= require('./authRouter');
+const retirosRouter= require('./retiros');
 //  aqui importamos nuestros routes, o endpoints
 
 
@@ -21,7 +22,8 @@ function routerApi(app){
   router.use('/giros', passport.authenticate('jwt',{session:false}),girosRouter)
   router.use('/venezuela', passport.authenticate('jwt',{session:false}),venezuelaRouter)
   router.use('/pines',  passport.authenticate('jwt',{session:false}),pinesRouter)
-  router.use('/freefire', passport.authenticate('jwt',{session:false}),freefireRouter)
+  router.use('/freefire', passport.authenticate('jwt',{session:false}),freefireRouter);
+  router.use('/retiros',passport.authenticate('jwt',{session:false}),retirosRouter)
   router.use('/auth',authRouter);
 }
 module.exports= routerApi;

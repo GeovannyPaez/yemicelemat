@@ -1,6 +1,6 @@
 'use strict';
 
-const { USER_TABLE } = require('../models/userModel');
+const { RETIROS_TABLE, RetirosSchema } = require('../models/retirosModel');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -10,17 +10,11 @@ module.exports = {
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+
      */
-    await queryInterface.bulkInsert(USER_TABLE,[
-      {
-        email: 'yemicelemat2021@gmail.com',
-        password: '$2b$20$Nkvrq42n1ryA1r/nrcdy7Ord/b8ri2j3rzdj5XVjwe3giYdvgua.S',
-        create_at: '2023-01-1',
-        nickname: 'Michell Paez',
-        admin: true,
-      },
-    ])
+    queryInterface.createTable(RETIROS_TABLE,RetirosSchema)
   },
+
 
   async down (queryInterface) {
     /**
@@ -29,6 +23,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    queryInterface.bulkDelete(USER_TABLE);
+    queryInterface.dropTable(RETIROS_TABLE)
   }
+
 };

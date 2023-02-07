@@ -48,6 +48,8 @@ class User extends Model {
     this.hasMany(models.Giros,{as: 'giros',foreignKey:'userId'});
     this.hasMany(models.Venezuela,{as: 'venezuela',foreignKey:'userId'});
     this.hasMany(models.Freefire,{as: 'freefire',foreignKey:'userId'});
+    this.hasMany(models.Retiros,{as:'retiros',foreignKey:'userId'});
+
   }
   static config(sequelize) {
     return {

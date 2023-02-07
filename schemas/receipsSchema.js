@@ -53,7 +53,21 @@ const createReceiptSchema = joi.object({
 
 });
 
-
+const createWhitdrawalsSchema = joi.object({
+  typeReceipt:tipoRecibo.required(),
+  totalReceived:value.required(),
+  totalDelivered:comicion.required(),
+  numberReceipt:id.required(),
+  bench:banco.required()
+})
+const updatedWhitdrawalsSchema =joi.object({
+  typeReceipt:tipoRecibo,
+  totalReceived:value,
+  totalDelivered:comicion,
+  numberReceipt:id,
+  state:estado,
+  urlVoucher
+})
 const updateReceiptSchema = joi.object({
   valor: value,
   comicion: comicion,
@@ -91,12 +105,8 @@ const getReceiptSchema = joi.object({
 const quryReceiptSchema= joi.object({
   limit,
   offset,
-  day:name,
-  week:name,
-  month:name,
   complete:complete,
   dateEnd:date,
   dateInitial:date
-
 })
-module.exports = { createReceiptSchema, updateReceiptSchema, quryReceiptSchema,getReceiptSchema ,createTypeReceiptSchema};
+module.exports = { createReceiptSchema, updateReceiptSchema, quryReceiptSchema,getReceiptSchema ,createTypeReceiptSchema,createWhitdrawalsSchema,updatedWhitdrawalsSchema};
