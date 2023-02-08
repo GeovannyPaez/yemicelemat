@@ -58,15 +58,17 @@ const createWhitdrawalsSchema = joi.object({
   totalReceived:value.required(),
   totalDelivered:comicion.required(),
   numberReceipt:id.required(),
-  bench:banco.required()
-})
+  bench:banco.required(),
+  date:date.required()
+});
 const updatedWhitdrawalsSchema =joi.object({
   typeReceipt:tipoRecibo,
   totalReceived:value,
   totalDelivered:comicion,
   numberReceipt:id,
   state:estado,
-  urlVoucher
+  urlVoucher,
+  date
 })
 const updateReceiptSchema = joi.object({
   valor: value,
