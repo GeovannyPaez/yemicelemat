@@ -1,0 +1,47 @@
+{
+  "name": "api_rest_express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint index.js",
+    "migration:generate": "sequelize-cli migration:generate --name",
+    "seed:generate": "sequelize-cli seed:generate --name",
+    "migration:run": "sequelize-cli db:migrate ",
+    "seed:run":"sequelize db:seed:all",
+    "migration:delete": "sequelize-cli db:undo:all ",
+    "migration:revert": "sequelize-cli db:undo"
+  },
+  "keywords": [],
+  "author": "Geovanny Paez",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.0"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.0",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "nodemailer": "^6.8.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.26.0",
+    "sequelize-cli": "^6.5.2"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
